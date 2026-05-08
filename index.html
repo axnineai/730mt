@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="pt-MZ">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gemgala MZ - Renda Extra</title>
+    <style>
+        :root {
+            --primary: #8a2be2;
+            --secondary: #00f2ff;
+            --dark: #0a0b10;
+            --card: #161b22;
+            --text: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--dark);
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 450px;
+            padding: 20px;
+            background: var(--card);
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(138, 43, 226, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            position: relative;
+        }
+
+        .logo-area h1 {
+            font-size: 2.2rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+        }
+
+        .reward-badge {
+            background: rgba(0, 242, 255, 0.1);
+            border: 1px solid var(--secondary);
+            padding: 10px;
+            border-radius: 12px;
+            margin: 15px 0;
+            font-weight: bold;
+            color: var(--secondary);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .steps {
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        .step-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px;
+            border-radius: 10px;
+        }
+
+        .step-num {
+            background: var(--primary);
+            color: white;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 12px;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+
+        /* --- BOTÃO RADIANTE CENTRALIZADO --- */
+        .btn-container {
+            display: flex;
+            justify-content: center;
+            margin: 25px 0;
+        }
+
+        .btn-wrapper {
+            position: relative;
+            display: inline-block;
+            padding: 3px;
+            border-radius: 50px;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-wrapper::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, var(--secondary), var(--primary), transparent 40%);
+            animation: rotate 3s linear infinite;
+            z-index: -2;
+        }
+
+        .btn-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            background: var(--card);
+            border-radius: 50px;
+            z-index: -1;
+        }
+
+        .btn-download {
+            display: block;
+            padding: 16px 40px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        /* --- SEÇÃO DO VÍDEO NO FUNDO (SEM ERROS) --- */
+        .video-label {
+            font-size: 0.8rem;
+            color: var(--secondary);
+            margin: 20px 0 10px;
+            display: block;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .video-container-yt {
+            margin: 10px auto 15px;
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--secondary);
+            position: relative;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+        }
+
+        .video-placeholder {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .video-thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+            transition: 0.4s;
+        }
+
+        .play-button {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 3px solid #fff;
+        }
+
+        .play-button::before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            border-left: 20px solid white;
+            margin-left: 5px;
+        }
+
+        .play-button::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid var(--secondary);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.6); opacity: 0; }
+        }
+
+        .warning {
+            color: #ffcc00;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            padding: 10px;
+            border-top: 1px dashed rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="logo-area">
+        <h1>Ganhe 730MT</h1>
+        <p>Não Precisa Depositar Apena Sigas os Passo Abaixo</p>
+    </div>
+
+    <div class="reward-badge">
+        🎁 BÔNUS DE 730 MT LIBERADO
+    </div>
+
+    <div class="steps">
+        <div class="step-item">
+            <div class="step-num">1</div>
+            <div><strong>Perfil:</strong> Cabeça de gatinho (em baixo à direita) > <b>Meu Perfil</b>.</div>
+        </div>
+        <div class="step-item" style="border: 1px solid var(--secondary);">
+            <div class="step-num">2</div>
+            <div><strong>Validar:</strong> Faça a <b>Verificação Facial</b> e use <b>Foto Real</b>.</div>
+        </div>
+        <div class="step-item">
+            <div class="step-num">3</div>
+            <div><strong>Atividade:</strong> Explore a app por 24h para validar o bónus.</div>
+        </div>
+    </div>
+
+    <!-- BOTÃO CENTRALIZADO -->
+    <div class="btn-container">
+        <div class="btn-wrapper">
+            <a href="https://getblock.me/u/21068680" class="btn-download">BAIXAR E GANHAR AGORA</a>
+        </div>
+    </div>
+
+    <!-- VÍDEO NA PARTE DE BAIXO (FORMATO YOUTUBE) -->
+    <span class="video-label">📺 Assistir Tutorial (Recomendado)</span>
+    <div class="video-container-yt">
+        <a href="https://www.youtube.com/watch?v=3rwla-1lMLQ" target="_blank" class="video-placeholder">
+            <div class="play-button"></div>
+            <img src="https://img.youtube.com/vi/3rwla-1lMLQ/maxresdefault.jpg" alt="Tutorial Gemgala" class="video-thumb">
+        </a>
+    </div>
+
+    <div class="warning">
+        ⚠️ <b>IMPORTANTE:</b> Siga o vídeo acima para garantir seu pagamento via M-Pesa.
+    </div>
+</div>
+
+</body>
+</html>
