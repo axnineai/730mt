@@ -11,6 +11,7 @@
             --dark: #0a0b10;
             --card: #161b22;
             --text: #ffffff;
+            --accent: #ffcc00;
         }
 
         body {
@@ -23,70 +24,81 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px 0;
+            overflow-x: hidden;
         }
 
         .container {
             width: 90%;
             max-width: 450px;
-            padding: 20px;
+            padding: 25px;
             background: var(--card);
-            border-radius: 20px;
-            box-shadow: 0 0 30px rgba(138, 43, 226, 0.3);
+            border-radius: 24px;
+            box-shadow: 0 0 40px rgba(138, 43, 226, 0.25);
             border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
         }
 
         .logo-area h1 {
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             background: linear-gradient(to right, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 0;
+            font-weight: 800;
         }
 
         .reward-badge {
             background: rgba(0, 242, 255, 0.1);
             border: 1px solid var(--secondary);
-            padding: 10px;
+            padding: 12px;
             border-radius: 12px;
             margin: 15px 0;
             font-weight: bold;
             color: var(--secondary);
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .steps {
             text-align: left;
-            margin-top: 20px;
+            margin: 25px 0;
         }
 
         .step-item {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 12px;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 12px;
-            border-radius: 10px;
+            margin-bottom: 15px;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 15px;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+            transition: 0.3s;
+        }
+
+        .step-item:hover {
+            background: rgba(255, 255, 255, 0.07);
         }
 
         .step-num {
             background: var(--primary);
             color: white;
-            width: 25px;
-            height: 25px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 12px;
+            margin-right: 15px;
             flex-shrink: 0;
             font-weight: bold;
+            font-size: 0.9rem;
         }
 
+        /* --- BOTÃO CENTRALIZADO --- */
         .btn-container {
             display: flex;
             justify-content: center;
-            margin: 25px 0;
+            margin: 30px 0;
         }
 
         .btn-wrapper {
@@ -121,17 +133,32 @@
 
         .btn-download {
             display: block;
-            padding: 16px 40px;
+            padding: 18px 45px;
             background: linear-gradient(45deg, var(--primary), var(--secondary));
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: bold;
             font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.2s;
+        }
+
+        .btn-download:active {
+            transform: scale(0.95);
+        }
+
+        /* --- VÍDEO --- */
+        .video-label {
+            font-size: 0.85rem;
+            color: var(--secondary);
+            margin-bottom: 12px;
+            display: block;
+            font-weight: bold;
         }
 
         .video-container-yt {
-            margin: 10px auto;
             width: 100%;
             border-radius: 15px;
             overflow: hidden;
@@ -141,64 +168,72 @@
             background: #000;
         }
 
+        .video-placeholder {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+        }
+
         .video-thumb {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.6;
+            opacity: 0.5;
         }
 
         .play-button {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 50px;
-            height: 50px;
+            width: 55px;
+            height: 55px;
             background: var(--primary);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 2px solid #fff;
+            border: 3px solid #fff;
+            z-index: 2;
+        }
+
+        .play-button::before {
+            content: '';
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 18px solid white;
+            margin-left: 5px;
+        }
+
+        /* --- NOTA IMPORTANTE FINAL --- */
+        .final-warning {
+            background: rgba(255, 204, 0, 0.1);
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 15px;
+            border-radius: 12px;
+            margin-top: 25px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
         }
 
         .play-button::after {
             content: '';
-            border-top: 10px solid transparent;
-            border-bottom: 10px solid transparent;
-            border-left: 15px solid white;
-            margin-left: 4px;
-        }
-
-        /* --- CONTADOR REAL NO FINAL --- */
-        .footer-stats {
-            margin-top: 30px;
-            padding: 15px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .stat-label {
-            font-size: 0.75rem;
-            color: #888;
-            margin-bottom: 8px;
-            display: block;
-            text-transform: uppercase;
-        }
-
-        /* Estilo para o widget do contador */
-        #sfc-widget {
-            filter: grayscale(1) invert(1); /* Faz o contador combinar com o tema escuro */
-            opacity: 0.8;
-        }
-
-        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-
-        .warning {
-            color: #ffcc00;
-            font-size: 0.75rem;
-            margin-top: 15px;
-            opacity: 0.7;
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid var(--secondary);
+            animation: pulse 2s infinite;
         }
     </style>
 </head>
@@ -206,54 +241,46 @@
 
 <div class="container">
     <div class="logo-area">
-        <h1>Gemgala MZ</h1>
-        <p>A alternativa real ao Aviator</p>
+        <h1>Ganhe 730MT</h1>
+        <p style="opacity: 0.8;">Siga os passos abaixo para levantar 730mt e assista o video para saber como usar</p>
     </div>
 
-    <div class="reward-badge">🎁 BÔNUS DE 730 MT</div>
+    <div class="reward-badge">
+        🎁 ATENÇÃO APENA QUEM COMPLETAR OS PASSO ABAIXO RECEBRA 730MT
+    </div>
+
+    <!-- BOTÃO DE DOWNLOAD (PASSO 1) -->
+    <div class="btn-container">
+        <div class="btn-wrapper">
+            <a href="https://getblock.me/u/21068680" class="btn-download">1️⃣ Baixe o app aqui</a>
+        </div>
+    </div>
 
     <div class="steps">
         <div class="step-item">
-            <div class="step-num">1</div>
-            <div><strong>Perfil:</strong> Cabeça de gatinho > <b>Meu Perfil</b>.</div>
-        </div>
-        <div class="step-item" style="border: 1px solid var(--secondary);">
             <div class="step-num">2</div>
-            <div><strong>Validar:</strong> Faça <b>Verificação Facial</b> e use <b>Foto Real</b>.</div>
+            <div><strong>Complete seu Perfil:</strong> Colocar uma foto real e certifique-se de marcar que você é maior de idade (+18).</div>
         </div>
         <div class="step-item">
             <div class="step-num">3</div>
-            <div><strong>Atividade:</strong> Use a app por 24h para validar.</div>
+            <div><strong>Verificação:</strong> Clique no ícone do gatinho (canto inferior direito) clica Meu Perfil e verifique a sua conta.</div>
+        </div>
+        <div class="step-item">
+            <div class="step-num">4</div>
+            <div><strong>Atividade Inicial:</strong> Explore o app com frequência nas primeiras 24 horas (entre em Lives e oferece presentes com as moeda recebeu, ou jogue).</div>
         </div>
     </div>
 
-    <div class="btn-container">
-        <div class="btn-wrapper">
-            <a href="https://getblock.me/u/21068680" class="btn-download">BAIXAR E GANHAR AGORA</a>
-        </div>
-    </div>
-
+    <span class="video-label">📺 Veja como fazer (Tutorial):</span>
     <div class="video-container-yt">
-        <a href="https://www.youtube.com/watch?v=3rwla-1lMLQ" target="_blank" style="display:block; height:100%;">
+        <a href="https://www.youtube.com/watch?v=3rwla-1lMLQ" target="_blank" class="video-placeholder">
             <div class="play-button"></div>
-            <img src="https://img.youtube.com/vi/3rwla-1lMLQ/maxresdefault.jpg" class="video-thumb">
+            <img src="https://img.youtube.com/vi/3rwla-1lMLQ/maxresdefault.jpg" alt="Tutorial" class="video-thumb">
         </a>
     </div>
 
-    <!-- CONTADOR DE VISUALIZAÇÕES REAIS NO FINAL -->
-    <div class="footer-stats">
-        <span class="stat-label">Visualizações do Site</span>
-        
-        <!-- Widget de contador real -->
-        <div id="sfc-widget">
-            <a href="https://www.freecounterstat.com" title="contadores gratuitos">
-                <img src="https://counter2.optistats.ovh/private/freecounterstat.php?c=gemgalamz1" border="0" title="contadores gratuitos" alt="contadores gratuitos">
-            </a>
-        </div>
-    </div>
-
-    <div class="warning">
-        ⚠️ Oferta exclusiva para novos usuários em Moçambique.
+    <div class="final-warning">
+        ⚠️ <b>IMPORTANTE:</b> Apenas contas com o perfil completo e que estejam ativas no primeiro dia recebem a recompensa. Comece agora! 🚀
     </div>
 </div>
 
