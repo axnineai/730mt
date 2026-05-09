@@ -23,7 +23,6 @@
             align-items: center;
             min-height: 100vh;
             padding: 20px 0;
-            overflow-x: hidden;
         }
 
         .container {
@@ -35,7 +34,6 @@
             box-shadow: 0 0 30px rgba(138, 43, 226, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
-            position: relative;
         }
 
         .logo-area h1 {
@@ -55,7 +53,6 @@
             font-weight: bold;
             color: var(--secondary);
             text-transform: uppercase;
-            font-size: 0.9rem;
         }
 
         .steps {
@@ -86,7 +83,6 @@
             font-weight: bold;
         }
 
-        /* --- BOTÃO RADIANTE CENTRALIZADO --- */
         .btn-container {
             display: flex;
             justify-content: center;
@@ -134,18 +130,8 @@
             font-size: 1.1rem;
         }
 
-        /* --- SEÇÃO DO VÍDEO NO FUNDO (SEM ERROS) --- */
-        .video-label {
-            font-size: 0.8rem;
-            color: var(--secondary);
-            margin: 20px 0 10px;
-            display: block;
-            text-transform: uppercase;
-            font-weight: bold;
-        }
-
         .video-container-yt {
-            margin: 10px auto 15px;
+            margin: 10px auto;
             width: 100%;
             border-radius: 15px;
             overflow: hidden;
@@ -153,16 +139,6 @@
             position: relative;
             aspect-ratio: 16 / 9;
             background: #000;
-            box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
-        }
-
-        .video-placeholder {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
         }
 
         .video-thumb {
@@ -170,58 +146,59 @@
             height: 100%;
             object-fit: cover;
             opacity: 0.6;
-            transition: 0.4s;
         }
 
         .play-button {
             position: absolute;
-            width: 60px;
-            height: 60px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 50px;
+            height: 50px;
             background: var(--primary);
             border-radius: 50%;
-            z-index: 2;
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 3px solid #fff;
-        }
-
-        .play-button::before {
-            content: '';
-            width: 0;
-            height: 0;
-            border-top: 12px solid transparent;
-            border-bottom: 12px solid transparent;
-            border-left: 20px solid white;
-            margin-left: 5px;
+            border: 2px solid #fff;
         }
 
         .play-button::after {
             content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 2px solid var(--secondary);
-            animation: pulse 2s infinite;
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 15px solid white;
+            margin-left: 4px;
         }
 
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        /* --- CONTADOR REAL NO FINAL --- */
+        .footer-stats {
+            margin-top: 30px;
+            padding: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(1.6); opacity: 0; }
+        .stat-label {
+            font-size: 0.75rem;
+            color: #888;
+            margin-bottom: 8px;
+            display: block;
+            text-transform: uppercase;
         }
+
+        /* Estilo para o widget do contador */
+        #sfc-widget {
+            filter: grayscale(1) invert(1); /* Faz o contador combinar com o tema escuro */
+            opacity: 0.8;
+        }
+
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
         .warning {
             color: #ffcc00;
-            font-size: 0.8rem;
-            margin-top: 10px;
-            padding: 10px;
-            border-top: 1px dashed rgba(255,255,255,0.2);
+            font-size: 0.75rem;
+            margin-top: 15px;
+            opacity: 0.7;
         }
     </style>
 </head>
@@ -229,47 +206,54 @@
 
 <div class="container">
     <div class="logo-area">
-        <h1>Ganhe 730MT</h1>
-        <p>Não Precisa Depositar Apena Sigas os Passo Abaixo</p>
+        <h1>Gemgala MZ</h1>
+        <p>A alternativa real ao Aviator</p>
     </div>
 
-    <div class="reward-badge">
-        🎁 BÔNUS DE 730 MT LIBERADO
-    </div>
+    <div class="reward-badge">🎁 BÔNUS DE 730 MT</div>
 
     <div class="steps">
         <div class="step-item">
             <div class="step-num">1</div>
-            <div><strong>Perfil:</strong> Cabeça de gatinho (em baixo à direita) > <b>Meu Perfil</b>.</div>
+            <div><strong>Perfil:</strong> Cabeça de gatinho > <b>Meu Perfil</b>.</div>
         </div>
         <div class="step-item" style="border: 1px solid var(--secondary);">
             <div class="step-num">2</div>
-            <div><strong>Validar:</strong> Faça a <b>Verificação Facial</b> e use <b>Foto Real</b>.</div>
+            <div><strong>Validar:</strong> Faça <b>Verificação Facial</b> e use <b>Foto Real</b>.</div>
         </div>
         <div class="step-item">
             <div class="step-num">3</div>
-            <div><strong>Atividade:</strong> Explore a app por 24h para validar o bónus.</div>
+            <div><strong>Atividade:</strong> Use a app por 24h para validar.</div>
         </div>
     </div>
 
-    <!-- BOTÃO CENTRALIZADO -->
     <div class="btn-container">
         <div class="btn-wrapper">
             <a href="https://getblock.me/u/21068680" class="btn-download">BAIXAR E GANHAR AGORA</a>
         </div>
     </div>
 
-    <!-- VÍDEO NA PARTE DE BAIXO (FORMATO YOUTUBE) -->
-    <span class="video-label">📺 Assistir Tutorial (Recomendado)</span>
     <div class="video-container-yt">
-        <a href="https://www.youtube.com/watch?v=3rwla-1lMLQ" target="_blank" class="video-placeholder">
+        <a href="https://www.youtube.com/watch?v=3rwla-1lMLQ" target="_blank" style="display:block; height:100%;">
             <div class="play-button"></div>
-            <img src="https://img.youtube.com/vi/3rwla-1lMLQ/maxresdefault.jpg" alt="Tutorial Gemgala" class="video-thumb">
+            <img src="https://img.youtube.com/vi/3rwla-1lMLQ/maxresdefault.jpg" class="video-thumb">
         </a>
     </div>
 
+    <!-- CONTADOR DE VISUALIZAÇÕES REAIS NO FINAL -->
+    <div class="footer-stats">
+        <span class="stat-label">Visualizações do Site</span>
+        
+        <!-- Widget de contador real -->
+        <div id="sfc-widget">
+            <a href="https://www.freecounterstat.com" title="contadores gratuitos">
+                <img src="https://counter2.optistats.ovh/private/freecounterstat.php?c=gemgalamz1" border="0" title="contadores gratuitos" alt="contadores gratuitos">
+            </a>
+        </div>
+    </div>
+
     <div class="warning">
-        ⚠️ <b>IMPORTANTE:</b> Siga o vídeo acima para garantir seu pagamento via M-Pesa.
+        ⚠️ Oferta exclusiva para novos usuários em Moçambique.
     </div>
 </div>
 
