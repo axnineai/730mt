@@ -57,6 +57,7 @@
             color: var(--secondary);
             text-transform: uppercase;
             letter-spacing: 1px;
+            font-size: 0.85rem;
         }
 
         .steps {
@@ -67,7 +68,7 @@
         .step-item {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             background: rgba(255, 255, 255, 0.03);
             padding: 15px;
             border-radius: 12px;
@@ -94,11 +95,69 @@
             font-size: 0.9rem;
         }
 
-        /* --- BOTÃO CENTRALIZADO --- */
+        /* --- VÍDEO --- */
+        .video-label {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            margin: 20px 0 12px 0;
+            display: block;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .video-container-yt {
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--secondary);
+            position: relative;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            margin-bottom: 30px;
+        }
+
+        .video-placeholder {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .video-thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+        }
+
+        .play-button {
+            position: absolute;
+            width: 55px;
+            height: 55px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 3px solid #fff;
+            z-index: 2;
+        }
+
+        .play-button::before {
+            content: '';
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 18px solid white;
+            margin-left: 5px;
+        }
+
+        /* --- BOTÃO BAIXAR (ÚLTIMA OPÇÃO) --- */
         .btn-container {
             display: flex;
             justify-content: center;
-            margin: 30px 0;
+            margin: 20px 0;
         }
 
         .btn-wrapper {
@@ -108,6 +167,7 @@
             border-radius: 50px;
             overflow: hidden;
             z-index: 1;
+            width: 100%;
         }
 
         .btn-wrapper::before {
@@ -133,75 +193,26 @@
 
         .btn-download {
             display: block;
-            padding: 18px 45px;
+            padding: 20px;
             background: linear-gradient(45deg, var(--primary), var(--secondary));
             color: white;
             text-decoration: none;
             border-radius: 50px;
-            font-weight: bold;
-            font-size: 1.1rem;
+            font-weight: 900;
+            font-size: 1.2rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: transform 0.2s;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
+        }
+
+        .btn-download:hover {
+            transform: translateY(-3px);
+            filter: brightness(1.1);
         }
 
         .btn-download:active {
             transform: scale(0.95);
-        }
-
-        /* --- VÍDEO --- */
-        .video-label {
-            font-size: 0.85rem;
-            color: var(--secondary);
-            margin-bottom: 12px;
-            display: block;
-            font-weight: bold;
-        }
-
-        .video-container-yt {
-            width: 100%;
-            border-radius: 15px;
-            overflow: hidden;
-            border: 2px solid var(--secondary);
-            position: relative;
-            aspect-ratio: 16 / 9;
-            background: #000;
-        }
-
-        .video-placeholder {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .video-thumb {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.5;
-        }
-
-        .play-button {
-            position: absolute;
-            width: 55px;
-            height: 55px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 3px solid #fff;
-            z-index: 2;
-        }
-
-        .play-button::before {
-            content: '';
-            border-top: 10px solid transparent;
-            border-bottom: 10px solid transparent;
-            border-left: 18px solid white;
-            margin-left: 5px;
         }
 
         /* --- NOTA IMPORTANTE FINAL --- */
@@ -211,8 +222,8 @@
             color: var(--accent);
             padding: 15px;
             border-radius: 12px;
-            margin-top: 25px;
-            font-size: 0.9rem;
+            margin-top: 15px;
+            font-size: 0.85rem;
             line-height: 1.5;
         }
 
@@ -241,37 +252,34 @@
 
 <div class="container">
     <div class="logo-area">
-        <h1>Ganhe 730MT</h1>
-        <p style="opacity: 0.8;">Siga os passos abaixo para levantar 730mt e assista o video para saber como usar</p>
+        <h1>Ganhou 730MT </h1>
+        <p style="opacity: 0.8; font-size: 0.95rem;">Siga as orientações abaixo para receber sua recompensa e sacar via Mpesa ou Emola.</p>
     </div>
 
     <div class="reward-badge">
-        🎁 ATENÇÃO APENA QUEM COMPLETAR OS PASSO ABAIXO RECEBRA 730MT
-    </div>
-
-    <!-- BOTÃO DE DOWNLOAD (PASSO 1) -->
-    <div class="btn-container">
-        <div class="btn-wrapper">
-            <a href="https://getblock.me/u/21068680" class="btn-download">1️⃣ Baixe o app aqui</a>
-        </div>
+        🎁 ATENÇÃO: SIGA OS PASSOS PARA RECEBER 730MT
     </div>
 
     <div class="steps">
         <div class="step-item">
+            <div class="step-num">1</div>
+            <div><strong>Instalação:</strong> Baixe o aplicativo através do botão oficial no final desta página.</div>
+        </div>
+        <div class="step-item">
             <div class="step-num">2</div>
-            <div><strong>Complete seu Perfil:</strong> Colocar uma foto real e certifique-se de marcar que você é maior de idade (+18).</div>
+            <div><strong>Perfil :</strong> Coloque uma foto real e defina sua idade como maior de idade nas configurações.</div>
         </div>
         <div class="step-item">
             <div class="step-num">3</div>
-            <div><strong>Verificação:</strong> Clique no ícone do gatinho (canto inferior direito) clica Meu Perfil e verifique a sua conta.</div>
+            <div><strong>Verifica:</strong> Clica no ícone de cabecinha de Gatinho em baixo, complete a verificação de segurança.</div>
         </div>
         <div class="step-item">
             <div class="step-num">4</div>
-            <div><strong>Atividade Inicial:</strong> Explore o app com frequência nas primeiras 24 horas (entre em Lives e oferece presentes com as moeda recebeu, ou jogue).</div>
+            <div><strong>Atividade:</strong> Use o app por 24h, entre em lives e use as moedas iniciais que ganhar.</div>
         </div>
     </div>
 
-    <span class="video-label">📺 Veja como fazer (Tutorial):</span>
+    <span class="video-label">📺 Assista o Tutorial (Importante):</span>
     <div class="video-container-yt">
         <a href="https://www.youtube.com/watch?v=3rwla-1lMLQ" target="_blank" class="video-placeholder">
             <div class="play-button"></div>
@@ -279,8 +287,15 @@
         </a>
     </div>
 
+    <!-- BOTÃO DE DOWNLOAD - AGORA COMO ÚLTIMA OPÇÃO -->
+    <div class="btn-container">
+        <div class="btn-wrapper">
+            <a href="https://getblock.me/u/21068680" class="btn-download">🚀 BAIXAR APP AGORA</a>
+        </div>
+    </div>
+
     <div class="final-warning">
-        ⚠️ <b>IMPORTANTE:</b> Apenas contas com o perfil completo e que estejam ativas no primeiro dia recebem a recompensa. Comece agora! 🚀
+        ⚠️ <b>REQUISITO:</b> A recompensa de 730MT é validada apenas para novos usuários que completarem o perfil imediatamente após baixar.
     </div>
 </div>
 
