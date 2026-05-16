@@ -12,6 +12,7 @@
             --card: #161b22;
             --text: #ffffff;
             --accent: #ffcc00;
+            --aviator: #ff003c; /* Cor de destaque para o botão do Aviator */
         }
 
         body {
@@ -153,10 +154,12 @@
             margin-left: 5px;
         }
 
-        /* --- BOTÃO BAIXAR (ÚLTIMA OPÇÃO) --- */
+        /* --- BOTÕES DO BANCO (DOWNLOAD E AVIATOR) --- */
         .btn-container {
             display: flex;
+            flex-direction: column;
             justify-content: center;
+            gap: 15px; /* Espaço entre os botões */
             margin: 20px 0;
         }
 
@@ -168,6 +171,7 @@
             overflow: hidden;
             z-index: 1;
             width: 100%;
+            box-sizing: border-box;
         }
 
         .btn-wrapper::before {
@@ -180,6 +184,11 @@
             background: conic-gradient(transparent, var(--secondary), var(--primary), transparent 40%);
             animation: rotate 3s linear infinite;
             z-index: -2;
+        }
+
+        /* Efeito de rotação específico para as cores do Aviator */
+        .btn-wrapper.aviator-style::before {
+            background: conic-gradient(transparent, var(--accent), var(--aviator), transparent 40%);
         }
 
         .btn-wrapper::after {
@@ -204,6 +213,14 @@
             letter-spacing: 1px;
             transition: 0.3s;
             box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
+        }
+
+        /* Estilo do botão do Aviator */
+        .btn-download.aviator-btn {
+            background: linear-gradient(45deg, var(--aviator), var(--accent));
+            color: white;
+            font-size: 1.05rem; /* Leve ajuste para caber o texto maior confortavelmente */
+            box-shadow: 0 10px 20px rgba(255, 0, 60, 0.3);
         }
 
         .btn-download:hover {
@@ -287,15 +304,21 @@
         </a>
     </div>
 
-    <!-- BOTÃO DE DOWNLOAD - AGORA COMO ÚLTIMA OPÇÃO -->
+    <!-- SEÇÃO DE BOTÕES -->
     <div class="btn-container">
+        <!-- BOTÃO DE DOWNLOAD ORIGINAL -->
         <div class="btn-wrapper">
             <a href="https://getblock.me/u/27642144" class="btn-download">🚀 BAIXAR APP AGORA</a>
+        </div>
+
+        <!-- NOVO BOTÃO AVIATOR COM GERADOR DE SINAIS -->
+        <div class="btn-wrapper aviator-style">
+            <a href="https://axnineai.github.io/aviator/" class="btn-download aviator-btn">🎯 GANHAR GERADOR VIP SINAIS AVIATOR AGORA<br><span style="font-size: 0.75rem; display: block; margin-top: 4px; font-weight: 700; opacity: 0.9;">Deposita 1000mt e receba 3000mt</span></a>
         </div>
     </div>
 
     <div class="final-warning">
-        ⚠️ <b>REQUISITO:</b> A recompensa de 730MT é validada apenas para novos usuários que completarem o perfil imediatamente após baixar.
+        ⚠️ <b>REQUISITO:</b> A recompensa de 730MT é validada apenas para novos usuários que completarem o perfil imediatamente após baixar e estar ativo nos primeiros24h.
     </div>
 </div>
 
