@@ -12,7 +12,7 @@
             --card: #161b22;
             --text: #ffffff;
             --accent: #ffcc00;
-            --aviator: #ff003c; /* Cor de destaque para o botão do Aviator */
+            --aviator: #ff003c;
         }
 
         body {
@@ -53,7 +53,7 @@
             border: 1px solid var(--secondary);
             padding: 12px;
             border-radius: 12px;
-            margin: 15px 0;
+            margin: 20px 0 15px 0;
             font-weight: bold;
             color: var(--secondary);
             text-transform: uppercase;
@@ -74,11 +74,6 @@
             padding: 15px;
             border-radius: 12px;
             border-left: 4px solid var(--primary);
-            transition: 0.3s;
-        }
-
-        .step-item:hover {
-            background: rgba(255, 255, 255, 0.07);
         }
 
         .step-num {
@@ -93,10 +88,8 @@
             margin-right: 15px;
             flex-shrink: 0;
             font-weight: bold;
-            font-size: 0.9rem;
         }
 
-        /* --- VÍDEO --- */
         .video-label {
             font-size: 0.9rem;
             color: var(--secondary);
@@ -154,12 +147,12 @@
             margin-left: 5px;
         }
 
-        /* --- BOTÕES DO BANCO (DOWNLOAD E AVIATOR) --- */
+        /* --- CONTAINER DOS BOTÕES ANMADOS --- */
         .btn-container {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            gap: 15px; /* Espaço entre os botões */
+            gap: 15px;
             margin: 20px 0;
         }
 
@@ -171,7 +164,6 @@
             overflow: hidden;
             z-index: 1;
             width: 100%;
-            box-sizing: border-box;
         }
 
         .btn-wrapper::before {
@@ -186,9 +178,13 @@
             z-index: -2;
         }
 
-        /* Efeito de rotação específico para as cores do Aviator */
         .btn-wrapper.aviator-style::before {
             background: conic-gradient(transparent, var(--accent), var(--aviator), transparent 40%);
+        }
+
+        /* Animação exclusiva com borda neon rosa/roxa para o botão VIP */
+        .btn-wrapper.vip-style::before {
+            background: conic-gradient(transparent, #ff007f, #8a2be2, transparent 40%);
         }
 
         .btn-wrapper::after {
@@ -210,48 +206,39 @@
             font-weight: 900;
             font-size: 1.2rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
             transition: 0.3s;
-            box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
         }
 
-        /* Estilo do botão do Aviator */
         .btn-download.aviator-btn {
             background: linear-gradient(45deg, var(--aviator), var(--accent));
-            color: white;
-            font-size: 1.05rem; /* Leve ajuste para caber o texto maior confortavelmente */
-            box-shadow: 0 10px 20px rgba(255, 0, 60, 0.3);
+        }
+
+        /* Estilo do botão VIP no final */
+        .btn-download.vip-btn {
+            background: linear-gradient(45deg, #ff007f, #8a2be2);
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(255, 0, 127, 0.3);
         }
 
         .btn-download:hover {
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             filter: brightness(1.1);
         }
 
-        .btn-download:active {
-            transform: scale(0.95);
-        }
-
-        /* --- NOTA IMPORTANTE FINAL --- */
         .final-warning {
             background: rgba(255, 204, 0, 0.1);
             border: 1px solid var(--accent);
             color: var(--accent);
             padding: 15px;
             border-radius: 12px;
-            margin-top: 15px;
+            margin-top: 25px;
             font-size: 0.85rem;
-            line-height: 1.5;
+            text-align: left;
         }
 
         @keyframes rotate {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(1.5); opacity: 0; }
         }
 
         .play-button::after {
@@ -263,14 +250,19 @@
             border: 2px solid var(--secondary);
             animation: pulse 2s infinite;
         }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
     <div class="logo-area">
-        <h1>Ganhou 730MT </h1>
-        <p style="opacity: 0.8; font-size: 0.95rem;">Siga as orientações abaixo para receber sua recompensa e sacar via Mpesa ou Emola.</p>
+        <h1>Ganhou 730MT</h1>
+        <p style="opacity: 0.8; font-size: 0.95rem;">Siga as orientações abaixo para receber sua recompensa.</p>
     </div>
 
     <div class="reward-badge">
@@ -304,21 +296,22 @@
         </a>
     </div>
 
-    <!-- SEÇÃO DE BOTÕES -->
     <div class="btn-container">
-        <!-- BOTÃO DE DOWNLOAD ORIGINAL -->
         <div class="btn-wrapper">
             <a href="https://getblock.me/u/27837824" class="btn-download">🚀 BAIXAR APP AGORA</a>
         </div>
 
-        <!-- NOVO BOTÃO AVIATOR COM GERADOR DE SINAIS -->
         <div class="btn-wrapper aviator-style">
             <a href="https://abre.ai/pip8" class="btn-download aviator-btn">🎯 Ganhar 21000mt No Aviator<br><span style="font-size: 0.75rem; display: block; margin-top: 4px; font-weight: 700; opacity: 0.9;">AGORA</span></a>
+        </div>
+
+        <div class="btn-wrapper vip-style">
+            <a href="https://axdimasff.github.io/estrat-giavips/" target="_blank" class="btn-download vip-btn">🔥 COMPRAR ESTRATÉGIA VIP 🚀</a>
         </div>
     </div>
 
     <div class="final-warning">
-        ⚠️ <b>REQUISITO:</b> A recompensa de 730MT é validada apenas para novos usuários que completarem o perfil imediatamente após baixar e estar ativo nos primeiros24h.
+        ⚠️ <b>REQUISITO:</b> A recompensa de 730MT é validada apenas para novos usuários que completarem o perfil imediatamente após baixar e estar ativo nos primeiros 24h.
     </div>
 </div>
 
