@@ -3,316 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gemgala MZ - Renda Extra</title>
+    <title>Gemgala MZ - Renda Extra Oficial</title>
     <style>
         :root {
-            --primary: #8a2be2;
+            --bg: #050505;
+            --card: rgba(20, 20, 25, 0.85);
+            --accent: #8a2be2;
             --secondary: #00f2ff;
-            --dark: #0a0b10;
-            --card: #161b22;
             --text: #ffffff;
-            --accent: #ffcc00;
-            --aviator: #ff003c;
+            --warning: #ffcc00;
         }
 
         body {
             font-family: 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--dark);
+            background: radial-gradient(circle at top right, #1a0b2e, #050505);
             color: var(--text);
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 20px 0;
-            overflow-x: hidden;
+            padding: 20px;
         }
 
         .container {
-            width: 90%;
+            width: 100%;
             max-width: 450px;
-            padding: 25px;
             background: var(--card);
-            border-radius: 24px;
-            box-shadow: 0 0 40px rgba(138, 43, 226, 0.25);
+            backdrop-filter: blur(20px);
+            padding: 30px;
+            border-radius: 30px;
             border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
             text-align: center;
         }
 
-        .logo-area h1 {
-            font-size: 2.4rem;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
+        .header-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(to right, #fff, var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin: 0;
-            font-weight: 800;
+            margin-bottom: 10px;
         }
 
-        .reward-badge {
-            background: rgba(0, 242, 255, 0.1);
-            border: 1px solid var(--secondary);
-            padding: 12px;
-            border-radius: 12px;
-            margin: 20px 0 15px 0;
-            font-weight: bold;
+        .reward-tag {
+            display: inline-block;
+            background: rgba(138, 43, 226, 0.2);
+            border: 1px solid var(--accent);
             color: var(--secondary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.85rem;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 20px;
         }
 
-        .steps {
-            text-align: left;
-            margin: 25px 0;
-        }
-
+        .steps { text-align: left; margin: 25px 0; }
+        
         .step-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 12px;
             background: rgba(255, 255, 255, 0.03);
             padding: 15px;
-            border-radius: 12px;
-            border-left: 4px solid var(--primary);
+            border-radius: 15px;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            border-left: 3px solid var(--accent);
         }
 
         .step-num {
-            background: var(--primary);
+            background: var(--accent);
             color: white;
-            width: 28px;
-            height: 28px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             margin-right: 15px;
-            flex-shrink: 0;
             font-weight: bold;
         }
 
-        .video-label {
-            font-size: 0.9rem;
-            color: var(--secondary);
-            margin: 20px 0 12px 0;
-            display: block;
-            font-weight: bold;
-            text-align: left;
-        }
-
-        .video-container-yt {
-            width: 100%;
-            border-radius: 15px;
+        .video-container {
+            border: 2px solid var(--accent);
+            border-radius: 20px;
             overflow: hidden;
-            border: 2px solid var(--secondary);
-            position: relative;
-            aspect-ratio: 16 / 9;
-            background: #000;
-            margin-bottom: 30px;
-        }
-
-        .video-placeholder {
-            display: flex;
-            width: 100%;
-            height: 100%;
-            justify-content: center;
-            align-items: center;
-            text-decoration: none;
-        }
-
-        .video-thumb {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.6;
-        }
-
-        .play-button {
-            position: absolute;
-            width: 55px;
-            height: 55px;
-            background: var(--primary);
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 3px solid #fff;
-            z-index: 2;
-        }
-
-        .play-button::before {
-            content: '';
-            border-top: 10px solid transparent;
-            border-bottom: 10px solid transparent;
-            border-left: 18px solid white;
-            margin-left: 5px;
-        }
-
-        /* --- CONTAINER DOS BOTÕES ANMADOS --- */
-        .btn-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 15px;
             margin: 20px 0;
-        }
-
-        .btn-wrapper {
             position: relative;
-            display: inline-block;
-            padding: 3px;
-            border-radius: 50px;
-            overflow: hidden;
-            z-index: 1;
-            width: 100%;
         }
 
-        .btn-wrapper::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(transparent, var(--secondary), var(--primary), transparent 40%);
-            animation: rotate 3s linear infinite;
-            z-index: -2;
-        }
-
-        .btn-wrapper.aviator-style::before {
-            background: conic-gradient(transparent, var(--accent), var(--aviator), transparent 40%);
-        }
-
-        /* Animação exclusiva com borda neon rosa/roxa para o botão VIP */
-        .btn-wrapper.vip-style::before {
-            background: conic-gradient(transparent, #ff007f, #8a2be2, transparent 40%);
-            display: none;
-        }
-
-        .btn-wrapper::after {
-            content: '';
-            position: absolute;
-            inset: 3px;
-            background: var(--card);
-            border-radius: 50px;
-            z-index: -1;
-        }
-
-        .btn-download {
+        .btn-main {
             display: block;
-            padding: 20px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            background: linear-gradient(45deg, var(--accent), #6a1b9a);
             color: white;
-            text-decoration: none;
-            border-radius: 50px;
+            padding: 20px;
+            border-radius: 15px;
             font-weight: 900;
-            font-size: 1.2rem;
-            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            box-shadow: 0 10px 20px rgba(138, 43, 226, 0.3);
             transition: 0.3s;
         }
 
-        .btn-download.aviator-btn {
-            background: linear-gradient(45deg, var(--aviator), var(--accent));
-        }
-
-        /* Estilo do botão VIP no final */
-        .btn-download.vip-btn {
-            background: linear-gradient(45deg, #ff007f, #8a2be2);
-            font-size: 1.1rem;
-            box-shadow: 0 5px 15px rgba(255, 0, 127, 0.3);
-        }
-
-        .btn-download:hover {
-            transform: translateY(-2px);
-            filter: brightness(1.1);
+        .btn-alt {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+            padding: 15px;
+            border-radius: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            display: block;
         }
 
         .final-warning {
-            background: rgba(255, 204, 0, 0.1);
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            padding: 15px;
-            border-radius: 12px;
-            margin-top: 25px;
+            color: var(--warning);
             font-size: 0.85rem;
-            text-align: left;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .play-button::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-            border: 2px solid var(--secondary);
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            100% { transform: scale(1.5); opacity: 0; }
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(255, 204, 0, 0.05);
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="logo-area">
-        <h1>Ganhe mais de 21,000.00MT Sem Investir</h1>
-        <p style="opacity: 0.8; font-size: 0.95rem;">Siga as orientações abaixo para receber sua recompensa.</p>
-    </div>
-
-    <div class="reward-badge">
-        🎁 ATENÇÃO: SIGA OS PASSOS PARA RECEBER 21,000.00MT
-    </div>
+    <h1 class="header-title">Gemgala: Ganhe Recompensas Reais</h1>
+    <div class="reward-tag">🎁 BÔNUS DE ATIVAÇÃO DISPONÍVEL</div>
 
     <div class="steps">
         <div class="step-item">
             <div class="step-num">1</div>
-            <div><strong>Instalação:</strong> Baixe o aplicativo através do botão oficial no final desta página.</div>
+            <div><strong>Instalação:</strong> Baixe o app pelo botão oficial abaixo.</div>
         </div>
         <div class="step-item">
             <div class="step-num">2</div>
-            <div><strong>Perfil :</strong> Coloque uma foto real e defina sua idade como maior de idade nas configurações.</div>
+            <div><strong>Configuração:</strong> Coloque foto real e idade correta.</div>
         </div>
         <div class="step-item">
             <div class="step-num">3</div>
-            <div><strong>Verifica:</strong> Clica no ícone de cabecinha de Gatinho em baixo, complete a verificação de segurança.</div>
+            <div><strong>Verificação:</strong> Complete o desafio no ícone de gatinho.</div>
         </div>
         <div class="step-item">
             <div class="step-num">4</div>
-            <div><strong>Atividade:</strong> Use o app por 24h, entre em lives e use as moedas iniciais que ganhar.</div>
+            <div><strong>Validação:</strong> Use o app por 24h para liberar o bônus.</div>
         </div>
     </div>
 
-    <span class="video-label">📺 Assista o Tutorial (Importante):</span>
-    <div class="video-container-yt">
-        <a href="https://youtu.be/D4xB29rlohE" target="_blank" class="video-placeholder">
-            <div class="play-button"></div>
-            <img src="https://img.youtube.com/vi/3rwla-1lMLQ/maxresdefault.jpg" alt="Tutorial" class="video-thumb">
+    <div class="video-container">
+        <a href="https://youtu.be/D4xB29rlohE" target="_blank">
+            <img src="https://img.youtube.com/vi/3rwla-1lMLQ/maxresdefault.jpg" style="width:100%; display:block;" alt="Tutorial">
         </a>
     </div>
 
-    <div class="btn-container">
-        <div class="btn-wrapper">
-            <a href="https://getblock.me/u/27390450" class="btn-download">🚀 BAIXAR APP AGORA E GANHAR 21000MT</a>
-        </div>
-
-        <div class="btn-wrapper aviator-style">
-            <a href="https://axdimasff.github.io/betyeto/" class="btn-download aviator-btn">🎯 Quero Jogar Aviator<br><span style="font-size: 0.75rem; display: block; margin-top: 4px; font-weight: 700; opacity: 0.9;">AGORA</span></a>
-        </div>
-
-        <div class="btn-wrapper vip-style" style="display: none;">
-            <a href="https://axdimasff.github.io/estrat-giavips/" target="_blank" class="btn-download vip-btn">🔥 Quero Vender Minha Conta🚀</a>
-        </div>
-    </div>
+    <a href="https://getblock.me/u/27390450" class="btn-main">🚀 BAIXAR APP E GANHAR 21,000 MT</a>
+    <a href="https://axdimasff.github.io/betyeto/" class="btn-alt">🎯 IR PARA O JOGO AVIATOR</a>
 
     <div class="final-warning">
-        ⚠️ <b>REQUISITO:</b> As recompensas são validadas apenas para novos usuários que completarem o perfil imediatamente após baixar e estar ativo nos primeiros 24h.
+        ⚠️ <b>REQUISITO:</b> O sistema valida apenas novos usuários. Não tente criar contas fakes para não perder o direito ao bônus.
     </div>
 </div>
 
