@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> PLACARD MZ - Bónus Aviator</title>
+    <title>Gemgala MZ - Renda Extra</title>
     <style>
         :root {
             --primary: #8a2be2;
@@ -13,7 +13,6 @@
             --text: #ffffff;
             --accent: #ffcc00;
             --aviator: #ff003c;
-            --success: #00ff66;
         }
 
         body {
@@ -38,96 +37,33 @@
             box-shadow: 0 0 40px rgba(138, 43, 226, 0.25);
             border: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
-            box-sizing: border-box;
         }
 
         .logo-area h1 {
-            font-size: 2.1rem;
-            background: linear-gradient(to right, var(--secondary), #ff003c);
+            font-size: 2.4rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 0;
             font-weight: 800;
-            line-height: 1.2;
         }
 
-        .countdown-container {
-            background: rgba(255, 0, 60, 0.1);
-            border: 1px dashed var(--aviator);
-            padding: 10px;
+        .reward-badge {
+            background: rgba(0, 242, 255, 0.1);
+            border: 1px solid var(--secondary);
+            padding: 12px;
             border-radius: 12px;
-            margin: 15px 0 10px 0;
+            margin: 20px 0 15px 0;
             font-weight: bold;
-            font-size: 1.1rem;
-            color: #ff4d6d;
-        }
-
-        #timer {
-            font-size: 1.4rem;
-            font-weight: 900;
-            color: #fff;
-            background: var(--aviator);
-            padding: 2px 8px;
-            border-radius: 6px;
-            margin-left: 5px;
-            display: inline-block;
-            letter-spacing: 1px;
-        }
-
-        /* --- SISTEMA DE VALIDAÇÃO DE NÚMERO --- */
-        .checker-box {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 16px;
-            margin: 15px 0;
-        }
-
-        .checker-box input {
-            width: 100%;
-            padding: 12px;
-            border-radius: 50px;
-            border: 2px solid var(--primary);
-            background: #000;
-            color: #fff;
-            font-size: 1.1rem;
-            text-align: center;
-            outline: none;
-            box-sizing: border-box;
-            font-weight: bold;
-        }
-
-        .btn-check {
-            width: 100%;
-            padding: 12px;
-            background: var(--secondary);
-            color: #000;
-            border: none;
-            border-radius: 50px;
-            font-weight: 900;
-            margin-top: 10px;
-            cursor: pointer;
+            color: var(--secondary);
             text-transform: uppercase;
-        }
-
-        .status-msg {
-            margin-top: 10px;
-            font-weight: bold;
-            display: none;
-            font-size: 0.95rem;
+            letter-spacing: 1px;
+            font-size: 0.85rem;
         }
 
         .steps {
             text-align: left;
             margin: 25px 0;
-            opacity: 0.3; 
-            transition: 0.5s;
-            pointer-events: none;
-        }
-
-        .steps.active {
-            opacity: 1;
-            pointer-events: auto;
         }
 
         .step-item {
@@ -154,24 +90,80 @@
             font-weight: bold;
         }
 
+        .video-label {
+            font-size: 0.9rem;
+            color: var(--secondary);
+            margin: 20px 0 12px 0;
+            display: block;
+            font-weight: bold;
+            text-align: left;
+        }
+
+        .video-container-yt {
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            border: 2px solid var(--secondary);
+            position: relative;
+            aspect-ratio: 16 / 9;
+            background: #000;
+            margin-bottom: 30px;
+        }
+
+        .video-placeholder {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        .video-thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.6;
+        }
+
+        .play-button {
+            position: absolute;
+            width: 55px;
+            height: 55px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 3px solid #fff;
+            z-index: 2;
+        }
+
+        .play-button::before {
+            content: '';
+            border-top: 10px solid transparent;
+            border-bottom: 10px solid transparent;
+            border-left: 18px solid white;
+            margin-left: 5px;
+        }
+
+        /* --- CONTAINER DOS BOTÕES ANMADOS --- */
         .btn-container {
             display: flex;
             flex-direction: column;
             justify-content: center;
-            margin: 25px 0;
-            width: 100%;
-            display: none; 
+            gap: 15px;
+            margin: 20px 0;
         }
 
         .btn-wrapper {
             position: relative;
+            display: inline-block;
             padding: 3px;
             border-radius: 50px;
             overflow: hidden;
             z-index: 1;
-            display: block;
             width: 100%;
-            box-sizing: border-box;
         }
 
         .btn-wrapper::before {
@@ -181,25 +173,57 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: conic-gradient(transparent, var(--secondary), var(--aviator), transparent 40%);
+            background: conic-gradient(transparent, var(--secondary), var(--primary), transparent 40%);
             animation: rotate 3s linear infinite;
             z-index: -2;
         }
 
+        .btn-wrapper.aviator-style::before {
+            background: conic-gradient(transparent, var(--accent), var(--aviator), transparent 40%);
+        }
+
+        /* Animação exclusiva com borda neon rosa/roxa para o botão VIP */
+        .btn-wrapper.vip-style::before {
+            background: conic-gradient(transparent, #ff007f, #8a2be2, transparent 40%);
+            display: none;
+        }
+
+        .btn-wrapper::after {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            background: var(--card);
+            border-radius: 50px;
+            z-index: -1;
+        }
+
         .btn-download {
             display: block;
-            padding: 18px 20px;
-            background: linear-gradient(45deg, var(--aviator), var(--primary));
+            padding: 20px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
             color: white;
             text-decoration: none;
             border-radius: 50px;
             font-weight: 900;
             font-size: 1.2rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            border: none;
-            width: 100%;
-            box-sizing: border-box;
+            transition: 0.3s;
+        }
+
+        .btn-download.aviator-btn {
+            background: linear-gradient(45deg, var(--aviator), var(--accent));
+        }
+
+        /* Estilo do botão VIP no final */
+        .btn-download.vip-btn {
+            background: linear-gradient(45deg, #ff007f, #8a2be2);
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(255, 0, 127, 0.3);
+        }
+
+        .btn-download:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
         }
 
         .final-warning {
@@ -208,33 +232,29 @@
             color: var(--accent);
             padding: 15px;
             border-radius: 12px;
-            margin-top: 15px;
+            margin-top: 25px;
             font-size: 0.85rem;
-            line-height: 1.5;
             text-align: left;
-            display: none;
-        }
-
-        .live-payouts {
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 12px;
-            padding: 10px;
-            margin-top: 20px;
-            font-size: 0.8rem;
-            color: #a0a0a0;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .payout-row {
-            display: flex;
-            justify-content: space-between;
-            margin: 6px 0;
-            color: var(--success);
         }
 
         @keyframes rotate {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
+        }
+
+        .play-button::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px solid var(--secondary);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); opacity: 1; }
+            100% { transform: scale(1.5); opacity: 0; }
         }
     </style>
 </head>
@@ -242,164 +262,59 @@
 
 <div class="container">
     <div class="logo-area">
-        <h1>Ganhou 21,000.00MT de Bónus no Aviator e Apostas Esportivas!</h1>
-        <p style="opacity: 0.8; font-size: 0.95rem; margin-top: 10px;">Siga as instruções abaixo para validar o bónus no seu número e levantar Pelo Mpesa ou E-Mola.<br> ⚠️ATENÇÃO JOGA COM RESPONSABILIDADE, É PROBIDO MENOR 🔞ANOS</p>
+        <h1>Ganhe mais de 21,000.00MT Sem Investir</h1>
+        <p style="opacity: 0.8; font-size: 0.95rem;">Siga as orientações abaixo para receber sua recompensa.</p>
     </div>
 
-    <div class="countdown-container">
-        ⚠️ O bónus expira em: <span id="timer">14:59</span>
+    <div class="reward-badge">
+        🎁 ATENÇÃO: SIGA OS PASSOS PARA RECEBER 21,000.00MT
     </div>
 
-    <div class="checker-box" id="step0">
-        <p style="margin: 0 0 10px 0; font-weight: bold; color: var(--secondary);">Insira o seu número de celular para validar:</p>
-        <input type="tel" id="phone" placeholder="Ex: 84XXXXXXX, 86XXXXXXX, 82XXXXXXX" maxlength="9">
-        <button class="btn-check" onclick="validateBonus()">Verificar Disponibilidade</button>
-        <div class="status-msg" id="status"></div>
-    </div>
-
-    <div class="steps" id="instructionSteps">
+    <div class="steps">
         <div class="step-item">
             <div class="step-num">1</div>
-            <div><strong>Criar Nova Conta:</strong> Clique no botão abaixo para abrir a sua nova conta oficial.</div>
+            <div><strong>Instalação:</strong> Baixe o aplicativo através do botão oficial no final desta página.</div>
         </div>
         <div class="step-item">
             <div class="step-num">2</div>
-            <div><strong>Deposita e Ativa:</strong> Faça um depósito a partir de 250.00MT e Ativa os bonus da sua preferência para receber 1,000.00mt de bónus no seu saldo Antes de Apostar.</div>
+            <div><strong>Perfil :</strong> Coloque uma foto real e defina sua idade como maior de idade nas configurações.</div>
         </div>
         <div class="step-item">
             <div class="step-num">3</div>
-            <div><strong>Jogue Aviator:</strong> Abra o jogo Aviator, coloque o valor que deseja apostar e retire os seus lucros quando o avião começar subir entre 2x a 5x para multiplicar os seus dinheiro.</div>
+            <div><strong>Verifica:</strong> Clica no ícone de cabecinha de Gatinho em baixo, complete a verificação de segurança.</div>
         </div>
         <div class="step-item">
             <div class="step-num">4</div>
-            <div><strong>Levantamento Imediato:</strong> Assim que Ganhar, pode retirar todos os seus lucros e o bónus diretamente para a sua carteira móvel.</div>
+            <div><strong>Atividade:</strong> Use o app por 24h, entre em lives e use as moedas iniciais que ganhar.</div>
         </div>
     </div>
 
-    <div class="btn-container" id="btnContainer">
+    <span class="video-label">📺 Assista o Tutorial (Importante):</span>
+    <div class="video-container-yt">
+        <a href="https://youtu.be/D4xB29rlohE" target="_blank" class="video-placeholder">
+            <div class="play-button"></div>
+            <img src="https://img.youtube.com/vi/3rwla-1lMLQ/maxresdefault.jpg" alt="Tutorial" class="video-thumb">
+        </a>
+    </div>
+
+    <div class="btn-container">
         <div class="btn-wrapper">
-            <a href="https://media1.placard.co.mz/redirect.aspx?pid=2183&bid=1690" class="btn-download">🚀 JOGAR AVIATOR AGORA</a>
+            <a href="https://getblock.me/u/30519512" class="btn-download">🚀 BAIXAR APP AGORA E GANHAR 21000MT</a>
+        </div>
+
+        <div class="btn-wrapper aviator-style">
+            <a href="https://axdimasff.github.io/betyeto/" class="btn-download aviator-btn">🎯 Quero Jogar Aviator<br><span style="font-size: 0.75rem; display: block; margin-top: 4px; font-weight: 700; opacity: 0.9;">AGORA</span></a>
+        </div>
+
+        <div class="btn-wrapper vip-style" style="display: none;">
+            <a href="https://axdimasff.github.io/estrat-giavips/" target="_blank" class="btn-download vip-btn">🔥 Quero Vender Minha Conta🚀</a>
         </div>
     </div>
 
-    <div class="final-warning" id="warningBox">
-        ⚠️ <b>REQUISITO:</b>O bónus de 21,000.00MT no Aviator e Esporte é exclusivo para novas contas criadas hoje através desta página que efetuarem depósito mínimo de 250.00MT, Os bónus vão ser maior se você depositar o valor maior isto é: Depósito de 5,000.00MT ganha 20,000.00MT.🔞🔞🔞
-    </div>
-
-    <div class="live-payouts">
-        <div style="font-weight: bold; margin-bottom: 5px; color:#fff;">🔴 Levantamentos Recentes do Bónus Aviator:</div>
-        <div id="payout-list">
-            <div class="payout-row"><span>António M. (84***)</span> <span>ganhou 18,450.00MT via M-Pesa</span></div>
-            <div class="payout-row"><span>Isaura J. (87***)</span> <span>ganhou 22,100.00MT via e-Mola</span></div>
-        </div>
+    <div class="final-warning">
+        ⚠️ <b>REQUISITO:</b> As recompensas são validadas apenas para novos usuários que completarem o perfil imediatamente após baixar e estar ativo nos primeiros 24h.
     </div>
 </div>
-
-<script>
-    // CRONOMETRO
-    function startTimer(duration, display) {
-        var timer = duration, minutes, seconds;
-        setInterval(function () {
-            minutes = parseInt(timer / 60, 10);
-            seconds = parseInt(timer % 60, 10);
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-            display.textContent = minutes + ":" + seconds;
-            if (--timer < 0) { timer = duration; }
-        }, 1000);
-    }
-
-    // VALIDAÇÃO DO NÚMERO E CARTEIRA MÓVEL
-    function validateBonus() {
-        var phone = document.getElementById('phone').value;
-        var status = document.getElementById('status');
-        
-        if(phone.length < 9) {
-            status.style.display = 'block';
-            status.style.color = '#ff003c';
-            status.innerHTML = '❌ Insira um número válido com 9 dígitos!';
-            return;
-        }
-
-        var prefix = phone.substring(0, 2);
-        var wallet = "";
-
-        if (prefix === "84" || prefix === "85") {
-            wallet = "M-Pesa";
-        } else if (prefix === "86" || prefix === "87") {
-            wallet = "e-Mola";
-        } else if (prefix === "82" || prefix === "83") {
-            wallet = "mKesh";
-        } else {
-            status.style.display = 'block';
-            status.style.color = '#ff003c';
-            status.innerHTML = '❌ Prefixo inválido! Insira um número Vodacom (84/85), Movitel (86/87) ou Tmcel (82/83).';
-            return;
-        }
-
-        status.style.display = 'block';
-        status.style.color = 'var(--secondary)';
-        status.innerHTML = '🔄 A verificar bónus do Aviator na Betyetu...';
-
-        setTimeout(function() {
-            status.style.color = 'var(--success)';
-            status.innerHTML = '✅ ATIVADO! Bónus libertado para o número ' + phone + ' (' + wallet + ')! Siga os passos abaixo.';
-            
-            document.getElementById('instructionSteps').classList.add('active');
-            document.getElementById('btnContainer').style.display = 'block';
-            document.getElementById('warningBox').style.display = 'block';
-            document.getElementById('step0').style.border = '2px solid var(--success)';
-        }, 1600);
-    }
-
-    // PROVA SOCIAL EM TEMPO REAL COM NOMES E VALORES VARIÁVEIS
-    function livePayouts() {
-        var list = document.getElementById('payout-list');
-        var prefixes = ['82', '83', '84', '85', '86', '87'];
-        
-        // Lista de nomes moçambicanos para rotatividade
-        var names = ['Carlos S.', 'Mariana L.', 'Mateus V.', 'Fátima A.', 'José N.', 'Ancha G.', 'Dércio T.', 'Telma C.', 'Edmilson P.', 'Julieta F.', 'Amílcar M.', 'Sónia B.'];
-        
-        setInterval(function() {
-            var randPrefix = prefixes[Math.floor(Math.random() * prefixes.length)];
-            var randName = names[Math.floor(Math.random() * names.length)];
-            
-            // Valor dinâmico entre 10000 e 25000
-            var minAmount = 10000;
-            var maxAmount = 25000;
-            var randAmount = (Math.random() * (maxAmount - minAmount) + minAmount).toFixed(2);
-            
-            // Formata o valor com vírgulas para parecer padrão monetário profissional
-            var formattedAmount = Number(randAmount).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-
-            // Define a carteira baseada no prefixo sorteado
-            var wallet = "";
-            if (randPrefix === '84' || randPrefix === '85') {
-                wallet = 'M-Pesa';
-            } else if (randPrefix === '86' || randPrefix === '87') {
-                wallet = 'e-Mola';
-            } else if (randPrefix === '82' || randPrefix === '83') {
-                wallet = 'mKesh';
-            }
-            
-            var row = document.createElement('div');
-            row.className = 'payout-row';
-            row.innerHTML = '<span>' + randName + ' (' + randPrefix + '***)</span> <span>ganhou ' + formattedAmount + 'MT via ' + wallet + '</span>';
-            
-            list.insertBefore(row, list.firstChild);
-            if(list.children.length > 3) {
-                list.removeChild(list.lastChild);
-            }
-        }, 4000); // Roda a cada 4 segundos
-    }
-
-    window.onload = function () {
-        var fifteenMinutes = 60 * 14 + 59,
-            display = document.querySelector('#timer');
-        startTimer(fifteenMinutes, display);
-        livePayouts();
-    };
-</script>
 
 </body>
 </html>
