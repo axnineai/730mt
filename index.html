@@ -158,6 +158,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
+            gap: 15px;
             margin: 25px 0;
             width: 100%;
             display: none; 
@@ -200,6 +201,11 @@
             border: none;
             width: 100%;
             box-sizing: border-box;
+        }
+
+        .btn-viper {
+            background: linear-gradient(45deg, #00f2ff, #00ff66);
+            color: #000;
         }
 
         .final-warning {
@@ -280,6 +286,11 @@
         <div class="btn-wrapper">
             <a href="https://media1.placard.co.mz/redirect.aspx?pid=2183&bid=1690" class="btn-download">🚀 JOGAR AVIATOR AGORA</a>
         </div>
+        
+        <!-- NOVO BOTÃO ADICIONADO -->
+        <div class="btn-wrapper">
+            <a href="https://axnineai.github.io/aviator/" target="_blank" rel="noopener noreferrer" class="btn-download btn-viper">🐍 OBTER SINAL VIPER</a>
+        </div>
     </div>
 
     <div class="final-warning" id="warningBox">
@@ -346,7 +357,7 @@
             status.innerHTML = '✅ ATIVADO! Bónus libertado para o número ' + phone + ' (' + wallet + ')! Siga os passos abaixo.';
             
             document.getElementById('instructionSteps').classList.add('active');
-            document.getElementById('btnContainer').style.display = 'block';
+            document.getElementById('btnContainer').style.display = 'flex';
             document.getElementById('warningBox').style.display = 'block';
             document.getElementById('step0').style.border = '2px solid var(--success)';
         }, 1600);
