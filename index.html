@@ -1,416 +1,126 @@
 <!DOCTYPE html>
 <html lang="pt-MZ">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> PLACARD MZ - Bónus Aviator</title>
-    <style>
-        :root {
-            --primary: #8a2be2;
-            --secondary: #00f2ff;
-            --dark: #0a0b10;
-            --card: #161b22;
-            --text: #ffffff;
-            --accent: #ffcc00;
-            --aviator: #ff003c;
-            --success: #00ff66;
-        }
-
-        body {
-            font-family: 'Segoe UI', Roboto, sans-serif;
-            background-color: var(--dark);
-            color: var(--text);
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px 0;
-            overflow-x: hidden;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 450px;
-            padding: 25px;
-            background: var(--card);
-            border-radius: 24px;
-            box-shadow: 0 0 40px rgba(138, 43, 226, 0.25);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            box-sizing: border-box;
-        }
-
-        .logo-area h1 {
-            font-size: 2.1rem;
-            background: linear-gradient(to right, var(--secondary), #ff003c);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin: 0;
-            font-weight: 800;
-            line-height: 1.2;
-        }
-
-        .countdown-container {
-            background: rgba(255, 0, 60, 0.1);
-            border: 1px dashed var(--aviator);
-            padding: 10px;
-            border-radius: 12px;
-            margin: 15px 0 10px 0;
-            font-weight: bold;
-            font-size: 1.1rem;
-            color: #ff4d6d;
-        }
-
-        #timer {
-            font-size: 1.4rem;
-            font-weight: 900;
-            color: #fff;
-            background: var(--aviator);
-            padding: 2px 8px;
-            border-radius: 6px;
-            margin-left: 5px;
-            display: inline-block;
-            letter-spacing: 1px;
-        }
-
-        /* --- SISTEMA DE VALIDAÇÃO DE NÚMERO --- */
-        .checker-box {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 15px;
-            border-radius: 16px;
-            margin: 15px 0;
-        }
-
-        .checker-box input {
-            width: 100%;
-            padding: 12px;
-            border-radius: 50px;
-            border: 2px solid var(--primary);
-            background: #000;
-            color: #fff;
-            font-size: 1.1rem;
-            text-align: center;
-            outline: none;
-            box-sizing: border-box;
-            font-weight: bold;
-        }
-
-        .btn-check {
-            width: 100%;
-            padding: 12px;
-            background: var(--secondary);
-            color: #000;
-            border: none;
-            border-radius: 50px;
-            font-weight: 900;
-            margin-top: 10px;
-            cursor: pointer;
-            text-transform: uppercase;
-        }
-
-        .status-msg {
-            margin-top: 10px;
-            font-weight: bold;
-            display: none;
-            font-size: 0.95rem;
-        }
-
-        .steps {
-            text-align: left;
-            margin: 25px 0;
-            opacity: 0.3; 
-            transition: 0.5s;
-            pointer-events: none;
-        }
-
-        .steps.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .step-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 12px;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 15px;
-            border-radius: 12px;
-            border-left: 4px solid var(--primary);
-        }
-
-        .step-num {
-            background: var(--primary);
-            color: white;
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            flex-shrink: 0;
-            font-weight: bold;
-        }
-
-        .btn-container {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            gap: 15px;
-            margin: 25px 0;
-            width: 100%;
-            display: none; 
-        }
-
-        .btn-wrapper {
-            position: relative;
-            padding: 3px;
-            border-radius: 50px;
-            overflow: hidden;
-            z-index: 1;
-            display: block;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .btn-wrapper::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(transparent, var(--secondary), var(--aviator), transparent 40%);
-            animation: rotate 3s linear infinite;
-            z-index: -2;
-        }
-
-        .btn-download {
-            display: block;
-            padding: 18px 20px;
-            background: linear-gradient(45deg, var(--aviator), var(--primary));
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 900;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: none;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .btn-viper {
-            background: linear-gradient(45deg, #00f2ff, #00ff66);
-            color: #000;
-        }
-
-        .final-warning {
-            background: rgba(255, 204, 0, 0.1);
-            border: 1px solid var(--accent);
-            color: var(--accent);
-            padding: 15px;
-            border-radius: 12px;
-            margin-top: 15px;
-            font-size: 0.85rem;
-            line-height: 1.5;
-            text-align: left;
-            display: none;
-        }
-
-        .live-payouts {
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 12px;
-            padding: 10px;
-            margin-top: 20px;
-            font-size: 0.8rem;
-            color: #a0a0a0;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .payout-row {
-            display: flex;
-            justify-content: space-between;
-            margin: 6px 0;
-            color: var(--success);
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090b13">
+  <meta name="description" content="AVIATOR E JOGOS ESPORTIVOS — consulte a oferta promocional e aceda à plataforma parceira. Jogue com responsabilidade.">
+  <title>AVIATOR E JOGOS ESPORTIVOS | Oferta promocional</title>
+  <style>
+    :root{--bg:#080a12;--panel:#111522;--panel2:#171c2c;--text:#f7f8ff;--muted:#a9b1c7;--cyan:#55efff;--purple:#9c63ff;--red:#ff4268;--gold:#ffd36a;--line:rgba(255,255,255,.10);--green:#76f5b2}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:radial-gradient(ellipse at 15% 0%,rgba(91,52,180,.22),transparent 38%),radial-gradient(ellipse at 100% 30%,rgba(0,205,230,.10),transparent 35%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.55}
+    a{color:inherit}
+    .wrap{width:min(100% - 28px,760px);margin:auto;padding:22px 0 34px}
+    .top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:20px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:.08em}
+    .brand-mark{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;background:linear-gradient(135deg,var(--cyan),var(--purple));color:#080a12;font-size:20px;box-shadow:0 0 28px #55efff30}
+    .brand small{display:block;color:var(--muted);font-size:10px;letter-spacing:.16em;font-weight:700}
+    .tag{font-size:11px;font-weight:800;letter-spacing:.08em;color:var(--green);border:1px solid #76f5b255;background:#76f5b210;padding:7px 10px;border-radius:99px;white-space:nowrap}
+    .hero{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:28px;padding:clamp(22px,6vw,42px);background:linear-gradient(145deg,rgba(25,31,52,.98),rgba(13,16,27,.98));box-shadow:0 24px 80px #0007}
+    .hero:before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-110px;top:-120px;background:var(--purple);filter:blur(90px);opacity:.24;pointer-events:none}
+    .eyebrow{position:relative;display:inline-flex;gap:8px;align-items:center;border:1px solid #55efff40;background:#55efff0d;color:var(--cyan);border-radius:99px;padding:7px 11px;font-size:11px;font-weight:900;letter-spacing:.12em;text-transform:uppercase}
+    h1{position:relative;margin:18px 0 12px;font-size:clamp(32px,7vw,54px);line-height:1.04;letter-spacing:-.045em;max-width:620px}
+    h1 span{background:linear-gradient(90deg,var(--cyan),#b7a1ff 58%,#ff7594);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .lead{position:relative;color:#c2c9da;max-width:570px;font-size:15px;margin:0 0 22px}
+    .notice{position:relative;display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1px solid #ffd36a42;background:#ffd36a0b;border-radius:14px;color:#ffe4a1;font-size:12px}
+    .actions{display:grid;gap:11px;margin-top:22px}
+    .btn{display:flex;align-items:center;justify-content:center;gap:10px;min-height:56px;padding:14px 18px;text-decoration:none;border:0;border-radius:15px;font-weight:900;text-align:center;letter-spacing:.025em;transition:transform .18s,filter .18s}
+    .btn:hover{transform:translateY(-2px);filter:brightness(1.08)}
+    .btn-primary{background:linear-gradient(100deg,var(--cyan),#a3a4ff);color:#090b13;box-shadow:0 9px 28px #55efff24}
+    .btn-secondary{border:1px solid #ffffff20;background:#ffffff08;color:#f5f6ff}
+    .fine{color:var(--muted);font-size:11px;text-align:center;margin:10px 0 0}
+    .section{margin-top:18px;padding:22px;border:1px solid var(--line);border-radius:22px;background:linear-gradient(180deg,#121625eF,#0e111ceF)}
+    .section h2{font-size:19px;margin:0 0 6px;letter-spacing:-.02em}
+    .sub{margin:0 0 17px;color:var(--muted);font-size:13px}
+    .steps{display:grid;gap:11px}
+    .step{display:flex;gap:13px;align-items:flex-start;padding:14px;border:1px solid #ffffff0c;border-radius:15px;background:#ffffff04}
+    .num{flex:0 0 34px;width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:linear-gradient(135deg,#9c63ff,#55efff);color:#090b13;font-weight:950}
+    .step strong{display:block;margin:1px 0 3px;font-size:14px}
+    .step p{margin:0;color:var(--muted);font-size:12px}
+    .feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+    .feature{padding:13px 9px;text-align:center;background:#ffffff05;border:1px solid var(--line);border-radius:14px}
+    .feature .icon{font-size:21px}
+    .feature strong{display:block;font-size:12px;margin-top:5px}
+    .feature small{display:block;color:var(--muted);font-size:10px;margin-top:3px}
+    .check{display:flex;gap:10px;align-items:flex-start;color:var(--muted);font-size:12px}
+    .check input{margin-top:4px;accent-color:var(--cyan)}
+    .footer{text-align:center;color:#7e879e;font-size:11px;padding:22px 8px 0}
+    .footer a{color:#bac5e1}
+    @media(min-width:600px){.actions{grid-template-columns:1.3fr 1fr}.steps{grid-template-columns:1fr 1fr}.section{padding:25px}}
+    @media(max-width:360px){.tag{font-size:9px}.feature-grid{grid-template-columns:1fr}.feature{display:flex;align-items:center;text-align:left;gap:10px}.feature small{margin-left:auto}}
+  </style>
 </head>
 <body>
+  <main class="wrap">
+    <header class="top">
+      <div class="brand"><div class="brand-mark">P</div><div>AVIATOR E JOGOS ESPORTIVOS<small>ENTRETENIMENTO ONLINE</small></div></div>
+      <div class="tag">18+ · JOGO RESPONSÁVEL</div>
+    </header>
 
-<div class="container">
-    <div class="logo-area">
-        <h1>Ganhe 300% de Bónus no Aviator e Apostas Esportivas!</h1>
-        <p style="opacity: 0.8; font-size: 0.95rem; margin-top: 10px;">Siga as instruções abaixo para validar o bónus no seu número e levantar Pelo Mpesa ou E-Mola.<br> ⚠️ATENÇÃO JOGA COM RESPONSABILIDADE, É PROBIDO MENOR 🔞ANOS</p>
-    </div>
+    <section class="hero">
+      <div class="eyebrow"><span>✦</span> BÓNUS AVIATOR</div>
+      <h1>AVIATOR E JOGOS ESPORTIVOS<br><span>Descubra a oferta!</span></h1>
+      <p class="lead">✈️🔥 Aviator + Futebol ⚽ — emoção e diversão num só lugar! Aceda à plataforma e consulte as condições da promoção.</p>
+      <div class="notice"><span>⚠️</span><span><strong>Importante:</strong> consulte as condições oficiais do bónus, os requisitos de depósito e as regras de levantamento antes de participar. A oferta está sujeita aos termos da plataforma.</span></div>
+      <div class="actions">
+        <a class="btn btn-primary" href="https://affiliates.megagamelive.com/click?campaign_id=2&amp;ref_id=1771" target="_blank" rel="noopener noreferrer">🚀 ACTIVAR OFERTA <span>↗</span></a>
+        <a class="btn btn-secondary" href="https://axnineai.github.io/aviator/" target="_blank" rel="noopener noreferrer">🐍 ACEDER AO VIPER <span>↗</span></a>
+      </div>
+      <p class="fine">Aceda através dos botões acima e leia as condições da plataforma antes de criar uma conta.</p>
+    </section>
 
-    <div class="countdown-container">
-        ⚠️ O bónus expira em: <span id="timer">14:59</span>
-    </div>
+    <section class="section">
+      <h2>Como receber a oferta</h2>
+      <p class="sub">Siga os passos abaixo para consultar a oferta e as condições de participação.</p>
+      <div class="steps">
+        <article class="step"><div class="num">1</div><div><strong>Entre na plataforma</strong><p>Use o botão acima para aceder à plataforma parceira.</p></div></article>
+        <article class="step"><div class="num">2</div><div><strong>Consulte o bónus</strong><p>Leia as regras da promoção, o depósito mínimo e os requisitos aplicáveis.</p></div></article>
+        <article class="step"><div class="num">3</div><div><strong>Escolha com atenção</strong><p>Participe apenas se compreender as condições e os riscos envolvidos.</p></div></article>
+        <article class="step"><div class="num">4</div><div><strong>Confira os levantamentos</strong><p>Veja os métodos, limites, prazos e regras de levantamento da plataforma.</p></div></article>
+      </div>
+    </section>
 
-    <div class="checker-box" id="step0">
-        <p style="margin: 0 0 10px 0; font-weight: bold; color: var(--secondary);">Insira o seu número de celular para validar:</p>
-        <input type="tel" id="phone" placeholder="Ex: 84XXXXXXX, 86XXXXXXX, 82XXXXXXX" maxlength="9">
-        <button class="btn-check" onclick="validateBonus()">Verificar Disponibilidade</button>
-        <div class="status-msg" id="status"></div>
-    </div>
+    <section class="section">
+      <h2>Mais diversão num só lugar</h2>
+      <p class="sub">Aviator, futebol e acesso rápido à plataforma parceira.</p>
+      <div class="feature-grid">
+        <div class="feature"><span class="icon">🔎</span><div><strong>Oferta</strong><small>Consulte as condições</small></div></div>
+        <div class="feature"><span class="icon">🔐</span><div><strong>Segurança</strong><small>Proteja os seus dados</small></div></div>
+        <div class="feature"><span class="icon">🧭</span><div><strong>Responsabilidade</strong><small>Defina os seus limites</small></div></div>
+      </div>
+    </section>
 
-    <div class="steps" id="instructionSteps">
-        <div class="step-item">
-            <div class="step-num">1</div>
-            <div><strong>Criar Nova Conta:</strong> Clique no botão abaixo para abrir a sua nova conta oficial.</div>
-        </div>
-        <div class="step-item">
-            <div class="step-num">2</div>
-            <div><strong>Deposita e Ativa:</strong> Faça um depósito a partir de 100MT e Ativa os bonus da sua preferência para receber 400mt de bónus no seu saldo Antes de Apostar.</div>
-        </div>
-        <div class="step-item">
-            <div class="step-num">3</div>
-            <div><strong>Jogue Aviator:</strong> Abra o jogo Aviator, coloque o valor que deseja apostar e retire os seus lucros quando o avião começar subir entre 2x a 5x para multiplicar os seus dinheiro.</div>
-        </div>
-        <div class="step-item">
-            <div class="step-num">4</div>
-            <div><strong>Levantamento Imediato:</strong> Assim que Ganhar, pode retirar todos os seus lucros e o bónus diretamente para a sua carteira móvel.</div>
-        </div>
-    </div>
+    <section class="section">
+      <h2>Jogo responsável</h2>
+      <p class="sub">Apostas e jogos de azar envolvem risco de perda financeira. Um multiplicador ou resultado passado não prevê o próximo resultado.</p>
+      <label class="check"><input id="ageConfirm" type="checkbox"> <span>Confirmo que tenho 18 anos ou mais e compreendo que posso perder o dinheiro apostado.</span></label>
+      <p class="fine" id="ageMessage" aria-live="polite"></p>
+    </section>
 
-    <div class="btn-container" id="btnContainer">
-        <div class="btn-wrapper">
-            <a href="https://affiliates.megagamelive.com/click?campaign_id=2&ref_id=1771" class="btn-download">🚀 JOGAR AVIATOR AGORA</a>
-        </div>
-        
-        <!-- NOVO BOTÃO ADICIONADO -->
-        <div class="btn-wrapper">
-            <a href="https://axnineai.github.io/aviator/" target="_blank" rel="noopener noreferrer" class="btn-download btn-viper">🐍 OBTER SINAL VIPER</a>
-        </div>
-    </div>
-
-    <div class="final-warning" id="warningBox">
-        ⚠️ <b>REQUISITO:</b>O bónus de 300% no Aviator Esporte é exclusivo para novas contas criadas hoje através desta página que efetuarem depósito mínimo de 100MT, Os bónus vão ser maior se você depositar o valor maior isto é: Depósito de 1000MT ganha 4000MT.🔞🔞🔞
-    </div>
-
-    <div class="live-payouts">
-        <div style="font-weight: bold; margin-bottom: 5px; color:#fff;">🔴 Levantamentos Recentes do Bónus Aviator:</div>
-        <div id="payout-list">
-            <div class="payout-row"><span>António M. (84***)</span> <span>ganhou 18,450.00MT via M-Pesa</span></div>
-            <div class="payout-row"><span>Isaura J. (87***)</span> <span>ganhou 22,100.00MT via e-Mola</span></div>
-        </div>
-    </div>
-</div>
-
-<script>
-    // CRONOMETRO
-    function startTimer(duration, display) {
-        var timer = duration, minutes, seconds;
-        setInterval(function () {
-            minutes = parseInt(timer / 60, 10);
-            seconds = parseInt(timer % 60, 10);
-            minutes = minutes < 10 ? "0" + minutes : minutes;
-            seconds = seconds < 10 ? "0" + seconds : seconds;
-            display.textContent = minutes + ":" + seconds;
-            if (--timer < 0) { timer = duration; }
-        }, 1000);
-    }
-
-    // VALIDAÇÃO DO NÚMERO E CARTEIRA MÓVEL
-    function validateBonus() {
-        var phone = document.getElementById('phone').value;
-        var status = document.getElementById('status');
-        
-        if(phone.length < 9) {
-            status.style.display = 'block';
-            status.style.color = '#ff003c';
-            status.innerHTML = '❌ Insira um número válido com 9 dígitos!';
-            return;
+    <footer class="footer">
+      <p><strong>AVIATOR E JOGOS ESPORTIVOS</strong> · Página promocional independente.</p>
+      <p>Não somos o operador da plataforma externa. Promoções, disponibilidade e levantamentos devem ser confirmados junto do operador.</p>
+      <p>🔞 Exclusivo para maiores de 18 anos. Aposte apenas por entretenimento e dentro dos seus limites.</p>
+    </footer>
+  </main>
+  <script>
+    const ageConfirm = document.getElementById('ageConfirm');
+    const ageMessage = document.getElementById('ageMessage');
+    document.querySelectorAll('.actions a').forEach(link => {
+      link.addEventListener('click', event => {
+        if (!ageConfirm.checked) {
+          event.preventDefault();
+          ageMessage.textContent = 'Confirme que tem 18 anos ou mais antes de continuar.';
+          ageMessage.style.color = '#ffd36a';
+          ageConfirm.focus();
         }
-
-        var prefix = phone.substring(0, 2);
-        var wallet = "";
-
-        if (prefix === "84" || prefix === "85") {
-            wallet = "M-Pesa";
-        } else if (prefix === "86" || prefix === "87") {
-            wallet = "e-Mola";
-        } else if (prefix === "82" || prefix === "83") {
-            wallet = "mKesh";
-        } else {
-            status.style.display = 'block';
-            status.style.color = '#ff003c';
-            status.innerHTML = '❌ Prefixo inválido! Insira um número Vodacom (84/85), Movitel (86/87) ou Tmcel (82/83).';
-            return;
-        }
-
-        status.style.display = 'block';
-        status.style.color = 'var(--secondary)';
-        status.innerHTML = '🔄 A verificar bónus do Aviator na Betyetu...';
-
-        setTimeout(function() {
-            status.style.color = 'var(--success)';
-            status.innerHTML = '✅ ATIVADO! Bónus libertado para o número ' + phone + ' (' + wallet + ')! Siga os passos abaixo.';
-            
-            document.getElementById('instructionSteps').classList.add('active');
-            document.getElementById('btnContainer').style.display = 'flex';
-            document.getElementById('warningBox').style.display = 'block';
-            document.getElementById('step0').style.border = '2px solid var(--success)';
-        }, 1600);
-    }
-
-    // PROVA SOCIAL EM TEMPO REAL COM NOMES E VALORES VARIÁVEIS
-    function livePayouts() {
-        var list = document.getElementById('payout-list');
-        var prefixes = ['82', '83', '84', '85', '86', '87'];
-        
-        // Lista de nomes moçambicanos para rotatividade
-        var names = ['Carlos S.', 'Mariana L.', 'Mateus V.', 'Fátima A.', 'José N.', 'Ancha G.', 'Dércio T.', 'Telma C.', 'Edmilson P.', 'Julieta F.', 'Amílcar M.', 'Sónia B.'];
-        
-        setInterval(function() {
-            var randPrefix = prefixes[Math.floor(Math.random() * prefixes.length)];
-            var randName = names[Math.floor(Math.random() * names.length)];
-            
-            // Valor dinâmico entre 10000 e 25000
-            var minAmount = 10000;
-            var maxAmount = 25000;
-            var randAmount = (Math.random() * (maxAmount - minAmount) + minAmount).toFixed(2);
-            
-            // Formata o valor com vírgulas para parecer padrão monetário profissional
-            var formattedAmount = Number(randAmount).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-
-            // Define a carteira baseada no prefixo sorteado
-            var wallet = "";
-            if (randPrefix === '84' || randPrefix === '85') {
-                wallet = 'M-Pesa';
-            } else if (randPrefix === '86' || randPrefix === '87') {
-                wallet = 'e-Mola';
-            } else if (randPrefix === '82' || randPrefix === '83') {
-                wallet = 'mKesh';
-            }
-            
-            var row = document.createElement('div');
-            row.className = 'payout-row';
-            row.innerHTML = '<span>' + randName + ' (' + randPrefix + '***)</span> <span>ganhou ' + formattedAmount + 'MT via ' + wallet + '</span>';
-            
-            list.insertBefore(row, list.firstChild);
-            if(list.children.length > 3) {
-                list.removeChild(list.lastChild);
-            }
-        }, 4000); // Roda a cada 4 segundos
-    }
-
-    window.onload = function () {
-        var fifteenMinutes = 60 * 14 + 59,
-            display = document.querySelector('#timer');
-        startTimer(fifteenMinutes, display);
-        livePayouts();
-    };
-</script>
-
+      });
+    });
+    ageConfirm.addEventListener('change', () => {
+      ageMessage.textContent = ageConfirm.checked ? 'Confirmação registada apenas nesta página.' : '';
+    });
+  </script>
 </body>
 </html>
